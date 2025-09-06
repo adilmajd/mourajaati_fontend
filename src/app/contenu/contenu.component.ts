@@ -1,10 +1,11 @@
 import { Component,inject,OnInit } from '@angular/core';
 import { MourajaatiServicesService } from '../mourajaati-services.service';
+import { LoginComponent } from "../login/login.component";
 
 @Component({
   selector: 'app-contenu',
   standalone: true,
-  imports: [],
+  imports: [LoginComponent],
   templateUrl: './contenu.component.html',
   styleUrl: './contenu.component.css'
 })

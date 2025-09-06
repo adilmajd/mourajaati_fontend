@@ -1,0 +1,11 @@
+.contenu{
+    height: 65vh;
+    overflow: auto;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE/Edge ancien */
+}
+
+.contenu::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge moderne */
+  }
+
