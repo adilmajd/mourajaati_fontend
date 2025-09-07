@@ -1,5 +1,6 @@
 import { Injectable,inject } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 const baseUrl = 'http://127.0.0.1:8000/';
 
@@ -13,5 +14,10 @@ export class BackendService {
 
   get_all_users(){
     return this.http.get(baseUrl + 'users/users/')
+  }
+
+  login(login:string,password:string):Observable<any>{
+    return this.http.post<any>(baseUrl+"users/login",{login,password})
+
   }
 }
