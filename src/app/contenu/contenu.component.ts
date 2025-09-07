@@ -2,11 +2,12 @@ import { Component,inject,OnInit } from '@angular/core';
 import { BackendService } from '../backend.service';
 import { LoginComponent } from "../login/login.component";
 import { AdminComponent } from "../admin/admin.component";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-contenu',
   standalone: true,
-  imports: [LoginComponent, AdminComponent],
+  imports: [LoginComponent, AdminComponent, RouterOutlet],
   templateUrl: './contenu.component.html',
   styleUrl: './contenu.component.css'
 })
