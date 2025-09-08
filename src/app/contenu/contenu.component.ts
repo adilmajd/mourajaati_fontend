@@ -11,13 +11,11 @@ import { RouterOutlet } from "@angular/router";
   templateUrl: './contenu.component.html',
   styleUrl: './contenu.component.css'
 })
-export class ContenuComponent implements OnInit {
+export class ContenuComponent {
 
   private back_serv = inject(BackendService);
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+ 
 
   get_all_users_c(){
     this.back_serv.get_all_users().subscribe(
