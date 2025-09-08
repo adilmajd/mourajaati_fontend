@@ -18,6 +18,15 @@ export class BackendService {
 
   login(login:string,password:string):Observable<any>{
     return this.http.post<any>(baseUrl+"users/login",{login,password})
-
   }
+
+  testme(){
+    const token = localStorage.getItem("token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(baseUrl+"users/test_me",{headers});
+  }
+
+
 }

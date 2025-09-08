@@ -13,18 +13,36 @@ export class LoginComponent {
   login="adil";
   password="1234";
   message="";
+  data_token=""
 
   auth(){
     this.back_serv.login(this.login,this.password).subscribe(
       {
         next: (response) => {
           this.message = response.message; // "Connexion réussie"
-          console.log(response.user);
+          this.data_token = response.user.access_token;
+          localStorage.setItem("token",this.data_token);
+          console.log(localStorage.getItem("token"));
+          
+          
+          
         },
         error: (err) => {
           this.message = err.error.detail; // "Identifiants invalides..."
         }
       }
     );
+  }
+
+
+  testme(){
+    
+    this.back_serv.testme().subscribe(
+      (data:any)=>{
+        console.log({"data message":data})
+      }
+    );
+    
+    console.log({"data message":localStorage.getItem("token")})
   }
 }
