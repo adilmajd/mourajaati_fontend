@@ -11,13 +11,17 @@ export class BackendService {
   private http = inject(HttpClient); // sert à récupérer un service (comme HttpClient, Router, etc.) sans passer par le constructor
 
   constructor() { }
+  login(login:any,password:any):Observable<any>{
+    return this.http.post<any>(baseUrl+"users/login",{login,password})
+  }
+
+
+
+
+
 
   get_all_users(){
     return this.http.get(baseUrl + 'users/users/')
-  }
-
-  login(login:string,password:string):Observable<any>{
-    return this.http.post<any>(baseUrl+"users/login",{login,password})
   }
 
   testme(){
@@ -43,5 +47,6 @@ export class BackendService {
     });
     return this.http.get(baseUrl + 'users/ecrire/',{headers})
   }
+  
 }
 

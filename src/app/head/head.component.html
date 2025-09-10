@@ -15,16 +15,19 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>  
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
+
+          <li class="nav-item dropdown" *ngIf="auth_serv.isLogedIn()">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profil</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Link</a></li>
-              <li><a class="dropdown-item" href="#">Another link</a></li>
-              <li><a class="dropdown-item" href="#">A third link</a></li>
+              <li><a class="dropdown-item" href="#">Afficher</a></li>
+              <li><a class="dropdown-item" href="#">Password</a></li>
+              <li><a class="dropdown-item" href="#">Avatar</a></li>
             </ul>
           </li>
+
         </ul>
-          <a routerLink="login" class="d-flex btn btn-primary">Connection</a> <!-- redirect vers login component-->
+          <a *ngIf="!auth_serv.isLogedIn()" routerLink="login" class="d-flex btn btn-primary">Connection</a>
+          <a *ngIf="auth_serv.isLogedIn()" (click)="logout()" class="d-flex btn btn-danger">Déconnection</a>
       </div>
     </div>
   </nav>

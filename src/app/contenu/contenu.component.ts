@@ -17,6 +17,11 @@ export class ContenuComponent {
 
  
 
+
+
+
+  
+/*
   get_all_users_c(){
     this.back_serv.get_all_users().subscribe(
       (data:any)=>{
@@ -24,5 +29,6 @@ export class ContenuComponent {
       }
     );
   }
+  */
 
 }
