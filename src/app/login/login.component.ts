@@ -10,7 +10,7 @@ import { BackendService } from '../backend.service';
 })
 export class LoginComponent {
   private back_serv = inject(BackendService);
-  login="adil";
+  login="adil"; //lire
   password="1234";
   message="";
   data_token=""
@@ -44,5 +44,21 @@ export class LoginComponent {
     );
     
     console.log({"data message":localStorage.getItem("token")})
+  }
+
+  test_lire(){
+    this.back_serv.test_lire().subscribe(
+      (data:any)=>{
+        console.log({"data message":data})
+      }
+    );
+  }
+
+  test_ecrire(){
+    this.back_serv.test_ecrire().subscribe(
+      (data:any)=>{
+        console.log({"data message":data})
+      }
+    );
   }
 }

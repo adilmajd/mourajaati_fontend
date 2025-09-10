@@ -28,5 +28,20 @@ export class BackendService {
     return this.http.get(baseUrl+"users/test_me",{headers});
   }
 
+  test_lire(){
+    const token = localStorage.getItem("token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(baseUrl + 'users/lire/',{headers})
+  }
 
+  test_ecrire(){
+    const token = localStorage.getItem("token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(baseUrl + 'users/ecrire/',{headers})
+  }
 }
+
