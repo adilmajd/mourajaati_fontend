@@ -1,6 +1,6 @@
 <div class="row mt-3">
   <div class="col-md-6 order-md-2">
-    <img src="../../assets/login/undraw_file_sync_ot38.svg" alt="Image login" class="img-fluid">
+    <img src="../../assets/image/login/1.png" alt="Image login" class="img-fluid" width="700">
   </div>
   <div class="col-md-6 contents">
     <div class="row justify-content-center">
@@ -8,7 +8,7 @@
         <div class="mb-4">
         <h3>Page de connection</h3>
       </div>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="">
         <div class="form-group first">
           <label for="username">Login</label>
           <input formControlName="username" id="username" name="username" type="text" class="form-control" placeholder="login">
@@ -23,7 +23,7 @@
           <span class="ml-auto"><a href="#" class="forgot-pass">Mot de pass oublié</a></span> 
         </div>
 
-        <input *ngIf="!load" type="submit" value="Connecter" class="btn text-white btn-block btn-success">
+        <input *ngIf="!load" type="submit" value="Connecter" class="btn text-white btn-block btn-success" [disabled]="loginForm.invalid">
          
         <button class="btn btn-success" *ngIf="load">
           <span class="spinner-border spinner-border-sm"></span>

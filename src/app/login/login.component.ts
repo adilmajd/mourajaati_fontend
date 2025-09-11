@@ -1,6 +1,6 @@
 import { Component,inject } from '@angular/core';
 import { BackendService } from '../backend.service';
-import { FormGroup,FormsModule,ReactiveFormsModule,FormControl } from '@angular/forms';
+import { FormGroup,FormsModule,ReactiveFormsModule,FormControl,Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { NgIf } from "@angular/common";
 
@@ -18,36 +18,41 @@ export class LoginComponent {
   data_token=""
   public load:boolean=false;
 
-  loginForm = new FormGroup({
-    username:new FormControl(''),
-    password:new FormControl('')
+  public loginForm = new FormGroup({
+    username:new FormControl('',[Validators.required,Validators.minLength(3)]),
+    password:new FormControl('',[Validators.required,Validators.minLength(3)])
   });
 
   onSubmit(){
-    this.load=true;
-    //this.back_serv.login(this.login,this.password).subscribe(
-    this.back_serv.login(this.loginForm.value["username"],this.loginForm.value["password"]).subscribe(
-      {
-        next: (response) => {
-          this.message = response.message; // "Connexion réussie"
-          this.data_token = response.user.access_token;
-          this.auth_serv.login(this.data_token)
-          console.log(this.message)
-          console.log(this.data_token)
-        },
-        error: (err) => {
-          this.load=false;
-          this.message = err.error.detail; // "Identifiants invalides..."
-          console.log(this.message)
-        },
-        
-        complete:() => {
-          //terminer
-          this.load=false;
+    if(this.loginForm.invalid){
+      alert("Veuiller remplir les champs !")
+    }else{
+      this.load=true;
+      //this.back_serv.login(this.login,this.password).subscribe(
+      this.back_serv.login(this.loginForm.value["username"],this.loginForm.value["password"]).subscribe(
+        {
+          next: (response) => {
+            this.message = response.message; // "Connexion réussie"
+            this.data_token = response.user.access_token;
+            this.auth_serv.login(this.data_token)
+            console.log(this.message)
+            console.log(this.data_token)
+          },
+          error: (err) => {
+            this.load=false;
+            this.message = err.error.detail; // "Identifiants invalides..."
+            console.log(this.message)
+          },
+          
+          complete:() => {
+            //terminer
+            this.load=false;
+          }
         }
-        
-      }
-    );
+      );
+    }
+
+
   }
 
 /*
