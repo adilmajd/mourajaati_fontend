@@ -1,5 +1,5 @@
 import { Component,inject } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { RouterLink,Router } from "@angular/router";
 import { AuthService } from '../auth.service';
 import { NgIf } from "@angular/common";
 
@@ -12,8 +12,10 @@ import { NgIf } from "@angular/common";
 })
 export class HeadComponent {
   public auth_serv = inject(AuthService);
+  private router = inject(Router);
 
   logout(){
     this.auth_serv.logout();
+    this.router.navigate(['/login'])
   }
 }

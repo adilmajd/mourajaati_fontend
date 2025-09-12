@@ -5,6 +5,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ErrorComponent } from './error/error.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -21,7 +22,13 @@ export const routes: Routes = [
         path:"profil",
         component:ProfilComponent,
         canActivate:[authGuard],
-        data: {roles:['admin']}, // badr(admin) & adil (utilisateur)
+    }
+    ,
+    {
+        path:"admin",
+        component:AdminComponent,
+        canActivate:[authGuard],
+        data: {roles:['admin']},
     }
     ,
     {

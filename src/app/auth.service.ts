@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class AuthService {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.ROLE_KEY);
     localStorage.removeItem(this.PERMISSION_KEY);
+
   }
 
   isLogedIn():boolean{
