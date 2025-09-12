@@ -1,6 +1,6 @@
 .error-page {
     min-height: 100vh;
-    background: linear-gradient(45deg, rgb(224, 4, 4) 0%, #e1d1d0 100%);
+    background: linear-gradient(to bottom, rgb(25, 135, 84) 0%, #e1d1d0 100%);
 }
 
 .error-container {
