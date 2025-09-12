@@ -15,7 +15,7 @@ export class LoginComponent {
   private back_serv = inject(BackendService);
   public auth_serv = inject(AuthService);
   message="";
-  data_token=""
+  data_token="";
   public load:boolean=false;
 
   public loginForm = new FormGroup({
@@ -34,9 +34,14 @@ export class LoginComponent {
           next: (response) => {
             this.message = response.message; // "Connexion réussie"
             this.data_token = response.user.access_token;
-            this.auth_serv.login(this.data_token)
+            var data_roles = response.user.roles;
+            var data_permissions = response.user.permissions;
+            this.auth_serv.login(this.data_token,data_roles,data_permissions)
             console.log(this.message)
             console.log(this.data_token)
+            console.log(data_roles)
+            console.log(data_permissions)
+            
           },
           error: (err) => {
             this.load=false;

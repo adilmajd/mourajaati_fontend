@@ -8,13 +8,23 @@ export class AuthService {
   constructor() { }
 
   private TOKEN_KEY = 'Acces token';
+  private ROLE_KEY = 'roles';
+  private PERMISSION_KEY = 'permissions';
 
-  login(token : string){
+  private token: string | null = null;
+  private roles: string[] = [];
+  private permissions: string[] = [];
+
+  login(token : string,roles:string[],permissions:string[]){
     localStorage.setItem(this.TOKEN_KEY,token);
+    localStorage.setItem(this.ROLE_KEY,JSON.stringify(roles));
+    localStorage.setItem(this.PERMISSION_KEY,JSON.stringify(permissions));
   }
 
   logout(){
     localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.ROLE_KEY);
+    localStorage.removeItem(this.PERMISSION_KEY);
   }
 
   isLogedIn():boolean{
@@ -24,4 +34,23 @@ export class AuthService {
   getToken():string | null{
     return localStorage.getItem(this.TOKEN_KEY);
   }
+
+  getRoles():string[]{
+    return JSON.parse(localStorage.getItem(this.ROLE_KEY) || '[]'); // || <> ou or
+  }
+
+  getPermissions():string[]{
+    return JSON.parse(localStorage.getItem(this.PERMISSION_KEY) || '[]'); // || <> ou or
+  }
+
+  hasRole(role:string):boolean{
+    const roles =  JSON.parse(localStorage.getItem('roles') || '[]');
+    return roles.includes(role);
+  }
+
+  hasPermissions(permission:string):boolean{
+    const permissions = this.permissions.length
+      ? this.permissions
+      : JSON.parse(localStorage.getItem('permissions') || '[]');
+    return permissions.includes(permission);  }
 }
