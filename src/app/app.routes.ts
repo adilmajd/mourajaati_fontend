@@ -6,6 +6,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ErrorComponent } from './error/error.component';
 import { AdminComponent } from './admin/admin.component';
+import { UsersComponent } from './admin/users/users.component';
 
 export const routes: Routes = [
     {
@@ -15,13 +16,15 @@ export const routes: Routes = [
     ,
     {
         path:"login",
-        component:LoginComponent
+        component:LoginComponent,
+        title:"Login"
     }
     ,
     {
         path:"profil",
         component:ProfilComponent,
         canActivate:[authGuard],
+        title:"Pofil"
     }
     ,
     {
@@ -29,6 +32,20 @@ export const routes: Routes = [
         component:AdminComponent,
         canActivate:[authGuard],
         data: {roles:['admin']},
+        title:"Admin",
+        children:[
+            {
+                path:"users",// admin/users
+                component:UsersComponent,
+                title:"Gestion utilsateurs"
+            }
+            ,
+            {
+                path:"acceuil",// admin/acceuil
+                component:AccueilComponent,
+                title:"Page d'administration"
+            }
+    ]
     }
     ,
     {

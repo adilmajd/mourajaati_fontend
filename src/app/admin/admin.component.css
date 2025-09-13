@@ -1,31 +1,36 @@
+ .p_admin{
+background: linear-gradient(to bottom, rgb(25, 135, 84) 0%, #e1d1d0 100%);
+ }
  /* The side navigation menu */
  .sidebar {
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #f1f1f1;
     position: fixed;
-    height: 68vh;
+    max-height: 68vh;
     overflow: auto;
+    background-color: transparent;
   }
   
   /* Sidebar links */
   .sidebar a {
     display: block;
     color: black;
-    padding: 16px;
+    padding: 12px;
     text-decoration: none;
+    background-color: transparent;
   }
   
   /* Active/current link */
   .sidebar a.active {
-    background-color: #04AA6D;
     color: white;
+
   }
   
   /* Links on mouse-over */
   .sidebar a:hover:not(.active) {
-    background-color: #555;
+    border: 1px rgb(247, 247, 247) solid;
+    border-radius: 25px;
     color: white;
   }
   
@@ -33,7 +38,7 @@
   div.content {
     margin-left: 200px;
     padding: 1px 16px;
-    height: auto;
+    height: 65vh;
   }
   
   /* On screens that are less than 700px wide, make the sidebar into a topbar */
