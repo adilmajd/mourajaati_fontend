@@ -38,7 +38,7 @@ background: linear-gradient(to bottom, rgb(25, 135, 84) 0%, #e1d1d0 100%);
   div.content {
     margin-left: 200px;
     padding: 1px 16px;
-    height: 65vh;
+    height: 72vh;
   }
   
   /* On screens that are less than 700px wide, make the sidebar into a topbar */

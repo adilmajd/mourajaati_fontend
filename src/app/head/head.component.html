@@ -19,15 +19,18 @@
           <li class="nav-item dropdown" *ngIf="auth_serv.isLogedIn()">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profil</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Afficher</a></li>
               <li><a class="dropdown-item" href="#">Password</a></li>
               <li><a class="dropdown-item" href="#">Avatar</a></li>
             </ul>
           </li>
 
+          <li class="nav-item" *ngIf="auth_serv.isLogedIn() && auth_serv.hasRole('admin')">
+            <a class="nav-link" routerLink="admin">Dashbord</a>
+          </li>  
+
         </ul>
-          <a *ngIf="!auth_serv.isLogedIn()" routerLink="login" class="d-flex btn btn-primary">Connection</a>
-          <a *ngIf="auth_serv.isLogedIn()" (click)="logout()" class="d-flex btn btn-danger">Déconnection</a>
+          <a *ngIf="!auth_serv.isLogedIn()" routerLink="login" class="d-flex btn btn-outline-dark text-white">Connection</a>
+          <a *ngIf="auth_serv.isLogedIn()" (click)="logout()" class="d-flex btn btn-outline-dark text-white">Déconnection</a>
       </div>
     </div>
   </nav>

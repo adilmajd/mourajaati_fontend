@@ -11,12 +11,14 @@ import { UsersComponent } from './admin/users/users.component';
 export const routes: Routes = [
     {
         path:"",
-        component:AccueilComponent
+        component:AccueilComponent,
+        pathMatch:"full"
     }
     ,
     {
         path:"login",
         component:LoginComponent,
+        pathMatch:"full",
         title:"Login"
     }
     ,
@@ -24,6 +26,7 @@ export const routes: Routes = [
         path:"profil",
         component:ProfilComponent,
         canActivate:[authGuard],
+        pathMatch:"full",
         title:"Pofil"
     }
     ,
@@ -37,7 +40,7 @@ export const routes: Routes = [
             {
                 path:"users",// admin/users
                 component:UsersComponent,
-                title:"Gestion utilsateurs"
+                title:"Gestion des utilsateurs"
             }
             ,
             {
@@ -45,16 +48,26 @@ export const routes: Routes = [
                 component:AccueilComponent,
                 title:"Page d'administration"
             }
+            ,
+            {
+                path:"role",// admin/role
+                component:AccueilComponent,
+                title:"Gestion des rôles"
+            }
     ]
     }
     ,
     {
         path:"404",
-        component:ErrorComponent
+        component:ErrorComponent,
+        pathMatch:"full",
+        title:"Error"
     },
     {
         path:"unauthorized",
-        component:UnauthorizedComponent
+        component:UnauthorizedComponent,
+        pathMatch:"full",
+        title:"unauthorized"
     }
     
 

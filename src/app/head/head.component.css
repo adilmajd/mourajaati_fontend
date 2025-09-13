@@ -1,0 +1,13 @@
+
+.btn_connecter a:hover:not(.active){
+
+    border: 1px rgb(247, 247, 247) solid;
+    border-radius: 25px;
+    color: white;
+}
+
+.btn_deconnecter a:hover:not(.active){
+    border: 1px rgb(247, 247, 247) solid;
+    border-radius: 25px;
+    color: white;
+}
