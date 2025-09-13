@@ -1,5 +1,5 @@
 .contenu{
-    min-height: 65vh;
+    height: 65vh;
     overflow: auto;
     scrollbar-width: none;  /* Firefox */
     -ms-overflow-style: none;  /* IE/Edge ancien */

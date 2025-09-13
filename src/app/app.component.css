@@ -1,0 +1,7 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgb(25, 135, 84) 0%, #e1d1d0 100%);
+}

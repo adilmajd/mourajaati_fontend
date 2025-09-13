@@ -18,7 +18,6 @@ export const routes: Routes = [
     {
         path:"login",
         component:LoginComponent,
-        pathMatch:"full",
         title:"Login"
     }
     ,
@@ -26,7 +25,6 @@ export const routes: Routes = [
         path:"profil",
         component:ProfilComponent,
         canActivate:[authGuard],
-        pathMatch:"full",
         title:"Pofil"
     }
     ,
@@ -60,13 +58,11 @@ export const routes: Routes = [
     {
         path:"404",
         component:ErrorComponent,
-        pathMatch:"full",
         title:"Error"
     },
     {
         path:"unauthorized",
         component:UnauthorizedComponent,
-        pathMatch:"full",
         title:"unauthorized"
     }
     

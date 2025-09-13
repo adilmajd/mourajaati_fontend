@@ -21,11 +21,15 @@ export class BackendService {
 
 
   get_all_users(){
-    return this.http.get(baseUrl + 'users/users/')
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(baseUrl + 'users/users/',{headers})
   }
 
   testme(){
-    const token = localStorage.getItem("token");  
+    const token = localStorage.getItem("Acces token");  
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
@@ -33,7 +37,7 @@ export class BackendService {
   }
 
   test_lire(){
-    const token = localStorage.getItem("token");  
+    const token = localStorage.getItem("Acces token");  
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
@@ -41,7 +45,7 @@ export class BackendService {
   }
 
   test_ecrire(){
-    const token = localStorage.getItem("token");  
+    const token = localStorage.getItem("Acces token");  
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
