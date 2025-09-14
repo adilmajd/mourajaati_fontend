@@ -20,13 +20,7 @@ export class BackendService {
 
 
 
-  get_all_users(){
-    const token = localStorage.getItem("Acces token");  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-    return this.http.get(baseUrl + 'users/users/',{headers})
-  }
+
 
   testme(){
     const token = localStorage.getItem("Acces token");  

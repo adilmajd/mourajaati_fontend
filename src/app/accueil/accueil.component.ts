@@ -16,9 +16,4 @@ export class AccueilComponent {
       console.log(data);
   });
   }
-  get_all_users(){
-    this.backendService.get_all_users().subscribe((data:any)=>{
-        console.log(data);
-    });
-  }
 }

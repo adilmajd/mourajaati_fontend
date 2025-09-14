@@ -1,4 +1,26 @@
-<p>users works!</p>
-<ul *ngFor="let item of users">
-        <li>{{item.nom}} {{item.prenom}}</li>
-</ul> 
+<div class="input-group mb-3 input-group-sm">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="login" (input)="serach_users()" [(ngModel)]="input_login">
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" placeholder="nom" (input)="serach_users()" [(ngModel)]="input_nom">
+        </div>
+        <div class="col-4">
+            <input type="text" class="form-control" placeholder="Prenom" (input)="serach_users()" [(ngModel)]="input_prenom">
+        </div>
+    </div>
+
+    
+  </div>
+
+<div class="row">
+    <div class="col-6">
+        <ul *ngFor="let item of users">
+            <li >{{item.nom}} {{item.prenom}}</li>
+        </ul>
+    </div>
+    <div class="col-6">
+        test
+    </div>
+</div>
