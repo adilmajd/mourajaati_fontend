@@ -1,13 +1,17 @@
 <div class="input-group mb-3 input-group-sm">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-3">
             <input type="text" class="form-control" placeholder="login" (input)="serach_users()" [(ngModel)]="input_login">
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <input type="text" class="form-control" placeholder="nom" (input)="serach_users()" [(ngModel)]="input_nom">
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <input type="text" class="form-control" placeholder="Prenom" (input)="serach_users()" [(ngModel)]="input_prenom">
+        </div>
+        <div class="col-3">
+            <span class="text-danger fw-bold">{{erreur}}</span>
+            <span class="text-info fw-bold">{{succes}}</span>
         </div>
     </div>
 
@@ -16,11 +20,47 @@
 
 <div class="row">
     <div class="col-6">
+        <div class="d-flex justify-content-center" *ngIf="load_user_bool">
+            <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+        </div>
         <ul *ngFor="let item of users">
-            <li >{{item.nom}} {{item.prenom}}</li>
+            <li > 
+                <div class="row">
+                    <div class="col-4"><span>{{item.nom}} {{item.prenom}}</span></div>
+                    <div class="col-4"><button class="btn btn-outline-info" (click)="get_roles_permissions_by_user(item.id,item.nom,item.prenom)">Rôles</button></div>
+                    <div class="col-4"><button class="btn btn-outline-warning" (click)="get_etat_by_user(item.id,item.nom,item.prenom)">Etat</button></div>
+
+                </div>
+            </li>
         </ul>
     </div>
     <div class="col-6">
-        test
+        <div class="row">
+            <div class="d-flex justify-content-center" *ngIf="load_role_user_bool">
+                <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+            </div>
+            <div class="col-12" >
+                <div *ngIf="affiche_role">
+                    <p>Affecter des Roles <span class="fw-bold">{{nom}} {{prenom}}</span> <span *ngIf="load_role"><span class="spinner-border text-dark"></span></span></p>
+                    <div *ngFor="let item of all_roles">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [checked]="roles_id_user.includes(item.role_id)" (change)="update_user_roles($event,item.role_id)">
+                            <label class="form-check-label">{{item.role_name}}</label>
+                        </div> 
+                    </div>
+                </div>
+                <div *ngIf="affiche_etat">
+                    <p>Etat <span class="fw-bold">{{nom}} {{prenom}}</span> <span *ngIf="load_etat"><span class="spinner-border text-dark"></span></span></p>
+                    <div *ngFor="let item of all_etats">
+                        <div class="form-check">
+                            <input type="radio" [value]="item.etat_id" [(ngModel)]="etat_id" class="form-check-input" name="etat_user"  (change)="update_user_etat(item.etat_id)">{{item.label}}
+                            <label class="form-check-label"></label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
     </div>
 </div>

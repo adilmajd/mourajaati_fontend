@@ -11,21 +11,24 @@ export class AuthService {
   private TOKEN_KEY = 'Acces token';
   private ROLE_KEY = 'roles';
   private PERMISSION_KEY = 'permissions';
+  private user_KEY = 'user_id';
 
   private token: string | null = null;
   private roles: string[] = [];
   private permissions: string[] = [];
 
-  login(token : string,roles:string[],permissions:string[]){
+  login(token : string,roles:string[],permissions:string[],user_id:string){
     localStorage.setItem(this.TOKEN_KEY,token);
     localStorage.setItem(this.ROLE_KEY,JSON.stringify(roles));
     localStorage.setItem(this.PERMISSION_KEY,JSON.stringify(permissions));
+    localStorage.setItem(this.user_KEY,user_id);
   }
 
   logout(){
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.ROLE_KEY);
     localStorage.removeItem(this.PERMISSION_KEY);
+    localStorage.removeItem(this.user_KEY);
 
   }
 
@@ -43,6 +46,10 @@ export class AuthService {
 
   getPermissions():string[]{
     return JSON.parse(localStorage.getItem(this.PERMISSION_KEY) || '[]'); // || <> ou or
+  }
+
+  getUserId():string | null{
+    return localStorage.getItem(this.user_KEY); // || <> ou or
   }
 
   hasRole(role:string):boolean{
