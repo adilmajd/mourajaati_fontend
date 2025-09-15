@@ -7,6 +7,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { ErrorComponent } from './error/error.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
+import { RoleComponent } from './admin/role/role.component';
 
 export const routes: Routes = [
     {
@@ -49,7 +50,7 @@ export const routes: Routes = [
             ,
             {
                 path:"role",// admin/role
-                component:AccueilComponent,
+                component:RoleComponent,
                 title:"Gestion des rôles"
             }
     ]

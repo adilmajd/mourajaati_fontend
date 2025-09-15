@@ -1,1 +1,24 @@
-<p>role works!</p>
+<div class="row">
+    <div class="col-3">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Entrer Rôle</span>
+            <input type="text" class="form-control" [(ngModel)]="input_role">
+        </div>
+        <button class="btn btn-outline-dark" (click)="create_role()">Créer rôle</button>
+        <div class="d-flex justify-content-center" *ngIf="load_role_bool">
+            <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+        </div>
+        <ul *ngFor="let item of all_roles" class="list-group bg-transparent mt-2">
+            <div class="row">
+                <div class="col-6"><li class="list-group-item bg-transparent">{{item.role_name}}</li></div>
+                <div class="col-6"><i class="bi bi-x-circle-fill text-danger" (click)="delete_roles(item.role_id)"></i> <span *ngIf="delete_role_id === item.role_id" style="width: 3vh; height: 3vh;" class="spinner-border text-dark"></span></div>
+            </div>
+        </ul>
+    </div>
+    <div class="col-3">
+        
+    </div>
+    <div class="col-3">
+        
+    </div>
+</div>

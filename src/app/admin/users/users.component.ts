@@ -179,7 +179,7 @@ export class UsersComponent  {
         this.erreur=err;
       },complete:()=> {
         this.load_etat=false;
-      },
+      }
     });
   }
 

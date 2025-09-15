@@ -84,6 +84,23 @@ export class AdminService {
     });
     return this.http.put(`${baseUrl}users/user/${userId}/etat/${etatId}`, {headers});
   }
+
+  create_role(role_name:string): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post<any>(`${baseUrl}users/roles/`, { role_name }, {headers});
+  }
+
+  delete_roles(role_id:number): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.delete<any>(`${baseUrl}users/roles/${role_id}`, {headers});
+  }
+
 }
 
 
