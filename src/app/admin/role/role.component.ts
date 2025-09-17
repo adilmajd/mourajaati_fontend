@@ -23,6 +23,13 @@ export class RoleComponent implements OnInit {
   public delete_role_bool:boolean=false;
 
   public load_permission_bool:boolean=false;
+  public load_role_permission_bool:boolean=false;
+  public update_role_permission_bool:boolean=false;
+
+  public selectedRole: any = null;
+  public rolePermissions: any[] = [];
+
+
   ngOnInit(): void {
     this.get_all_roles();
     this.get_all_permissions();
@@ -94,6 +101,7 @@ export class RoleComponent implements OnInit {
       next: (data) => {
         this.all_roles=null;
         this.get_all_roles();
+        this.get_all_permissions();
         console.log(data);
       },
       error: (err) => {
@@ -119,6 +127,66 @@ export class RoleComponent implements OnInit {
       }
     });
   }
+  role_select(role_id: number) {
+    this.load_role_permission_bool=true;
+    this.adminService.getRolePermissions(role_id).subscribe(
+      {
+      next: (data) => {
+        this.selectedRole=data;
+        this.rolePermissions = data.permissions;
+        console.log(data)
+      },
+      error: (err) => {
+        this.load_role_permission_bool=false;
+      },complete:()=> {
+        this.load_role_permission_bool=false;
+
+      }
+
+    });
+  }
+
+  togglePermission(permission_id: number, event: any) {
+    
+    const checked = event.target.checked;
+
+    if (!this.selectedRole) return;
+  
+    if (checked) {
+      // Associer permission
+      this.update_role_permission_bool=true;
+      this.adminService.addPermissionToRole(this.selectedRole.role_id, permission_id)
+        .subscribe({
+          next: () => {
+            console.log("Permission associée");
+          },
+          error: (err) => {
+            console.error(err);
+            event.target.checked = false; // rollback si erreur
+            this.update_role_permission_bool=false;
+          },complete:()=>{
+            this.update_role_permission_bool=false;
+          }
+        });
+    } else {
+      // Désassocier permission
+      this.update_role_permission_bool=true;
+      this.adminService.removePermissionFromRole(this.selectedRole.role_id, permission_id)
+        .subscribe({
+          next: () => {
+            console.log("Permission désassociée");
+          },
+          error: (err) => {
+            this.update_role_permission_bool=false;
+            console.error(err);
+            event.target.checked = true; // rollback si erreur
+          },complete:()=>{
+            this.update_role_permission_bool=false;
+          }
+        });
+    }
+  }
+  
 }
 
 

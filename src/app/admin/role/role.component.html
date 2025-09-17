@@ -32,6 +32,21 @@
         </ul>
     </div>
     <div class="col-3">
-        
+        <p>Accossier les permissions</p>
+        <div class="d-flex justify-content-center" *ngIf="load_role_permission_bool">
+            <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+        </div>
+        <select >
+            <option selected disabled>Rôles</option>
+            <option *ngFor="let item of all_roles" (click)="role_select(item.role_id)">{{item.role_name}}</option>
+        </select><span *ngIf="update_role_permission_bool" style="width: 3vh; height: 3vh;" class="spinner-border text-dark"></span>
+        <div *ngIf="rolePermissions.length > 0">
+            <div *ngFor="let perm of rolePermissions">
+              <input type="checkbox" [checked]="perm.checked" 
+              (change)="togglePermission(perm.permission_id, $event)"
+              />
+              {{perm.permission_name}}
+            </div>
+          </div>
     </div>
 </div>

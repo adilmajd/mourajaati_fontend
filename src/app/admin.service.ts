@@ -127,6 +127,30 @@ export class AdminService {
     return this.http.delete<any>(`${baseUrl}users/permissions/${permission_id}`, {headers});
   }
 
+  getRolePermissions(role_id: number): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get(baseUrl + `users/roles/${role_id}/permissions`, {headers});
+  }
+
+  addPermissionToRole(role_id: number, permission_id: number) {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post(`${baseUrl}users/roles/${role_id}/permissions/${permission_id}`, {headers});
+  }
+  
+  removePermissionFromRole(role_id: number, permission_id: number) {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.delete(`${baseUrl}users/roles/${role_id}/permissions/${permission_id}`,{headers});
+  }
+  
 }
 
 
