@@ -16,7 +16,20 @@
         </ul>
     </div>
     <div class="col-3">
-        
+        <div class="input-group mb-3">
+            <span class="input-group-text">Entrer Permissions</span>
+            <input type="text" class="form-control" [(ngModel)]="input_Permission">
+        </div>
+        <button class="btn btn-outline-dark" (click)="create_permission()">Créer Permission</button>
+        <div class="d-flex justify-content-center" *ngIf="load_permission_bool">
+            <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+        </div>
+        <ul *ngFor="let item of all_permissions" class="list-group bg-transparent mt-2">
+            <div class="row">
+                <div class="col-6"><li class="list-group-item bg-transparent">{{item.permission_name}}</li></div>
+                <div class="col-6"><i class="bi bi-x-circle-fill text-danger" (click)="delete_permission(item.permission_id)"></i> <span *ngIf="delete_permission_id === item.permission_id" style="width: 3vh; height: 3vh;" class="spinner-border text-dark"></span></div>
+            </div>
+        </ul>
     </div>
     <div class="col-3">
         

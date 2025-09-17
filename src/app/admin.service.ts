@@ -52,6 +52,16 @@ export class AdminService {
     return this.http.get(baseUrl + 'users/roles/',{headers});
   }
 
+  get_all_permissions():Observable<any>{
+    
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    
+    return this.http.get(baseUrl + 'users/permissions/',{headers});
+  }
+
   update_user_roles(user_id: string, role_ids: number[]): Observable<any> {
     const token = localStorage.getItem("Acces token");
     const headers = new HttpHeaders({
@@ -93,12 +103,28 @@ export class AdminService {
     return this.http.post<any>(`${baseUrl}users/roles/`, { role_name }, {headers});
   }
 
+  create_permission(permission_name:string): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post<any>(`${baseUrl}users/permissions/`, { permission_name }, {headers});
+  }
+
   delete_roles(role_id:number): Observable<any> {
     const token = localStorage.getItem("Acces token");
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
     return this.http.delete<any>(`${baseUrl}users/roles/${role_id}`, {headers});
+  }
+
+  delete_permission(permission_id:number): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.delete<any>(`${baseUrl}users/permissions/${permission_id}`, {headers});
   }
 
 }
