@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
 import { RoleComponent } from './admin/role/role.component';
 import { AvatarComponent } from './profil/avatar/avatar.component';
+import { PasswordComponent } from './profil/password/password.component';
 
 export const routes: Routes = [
     {
@@ -33,6 +34,11 @@ export const routes: Routes = [
                 path:"avatar",
                 component:AvatarComponent,
                 title:"Gestion des utilsateurs Avatar"
+            },
+            {
+                path:"password",
+                component:PasswordComponent,
+                title:"Gestion des utilsateurs Password"
             }
     ]
     }

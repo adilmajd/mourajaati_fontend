@@ -32,6 +32,20 @@ export class ProfilService {
   
     return this.http.get(`${this.baseUrl}users/user/${userId}/avatar`,{headers});
   }
+
+  updatePassword(userId: any, password1: any, password2: any): Observable<any> {
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    const payload = {
+      "password1": password1,
+      "password2": password2
+    };
+
+    return this.http.put(`${this.baseUrl}users/user/${userId}/password`,payload);
+  }
   
   
 }
