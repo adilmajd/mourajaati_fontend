@@ -44,8 +44,20 @@ export class ProfilService {
       "password2": password2
     };
 
-    return this.http.put(`${this.baseUrl}users/user/${userId}/password`,payload);
+    return this.http.put(`${this.baseUrl}users/user/${userId}/password`,payload,{headers});
   }
   
+
+  getCycles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}base/cycles`);
+  }
+
+  getNiveaux(cycleId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}base/cycles/${cycleId}/niveaux`);
+  }
+
+  getUserNiveau(userId: any): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}base/user/${userId}/niveau`);
+  }
   
 }

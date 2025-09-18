@@ -5,6 +5,8 @@ import { ProfilService } from '../../profil.service';
 import { AuthService } from '../../auth.service';
 import { Modal } from 'bootstrap';
 
+//const 
+
 @Component({
   selector: 'app-password',
   standalone: true,
@@ -13,6 +15,7 @@ import { Modal } from 'bootstrap';
   styleUrl: './password.component.css'
 })
 export class PasswordComponent {
+  
   private profilService = inject(ProfilService);
   private authService = inject(AuthService);
   public passwordForm = new FormGroup({
@@ -33,8 +36,10 @@ export class PasswordComponent {
       this.profilService.updatePassword(this.authService.getUserId(),password1,password2).subscribe({
         next: res => {
           console.log(res.message); // afficher message succès
-          const myModal = new Modal(document.getElementById('password_msg')!);
+
+          const myModal = new Modal(document.getElementById('password_msg') as HTMLElement);
           myModal.show();
+
           this.passwordForm.reset();
         },
         error: err => {
