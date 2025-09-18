@@ -3,6 +3,7 @@ import { ProfilService } from '../../profil.service';
 import { NgForOf, NgIf } from "@angular/common";
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { Modal } from 'bootstrap';
 
 
 @Component({
@@ -36,6 +37,8 @@ export class AvatarComponent implements OnInit{
         complete:()=> {
           this.load_img=false;
           this.getAvatar();
+          const myModal = new Modal(document.getElementById('Avatar_user') as HTMLElement);
+          myModal.show();
         }
       });
     }

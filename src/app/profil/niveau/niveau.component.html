@@ -12,6 +12,7 @@
               <input class="form-check-input"
                      type="radio"
                      name="niveau"
+                     (change)="onNiveauChange(n.niveau_id)"
                      [value]="n.niveau_id"
                      [checked]="n.niveau_id === userNiveauId">
               <label class="form-check-label">{{ n.niveau_label }}</label>
@@ -19,3 +20,31 @@
           </div>
     </div>
 </div>
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="cycle_niveau">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Cycle et Niveau</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            Le niveau mis à jour !
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

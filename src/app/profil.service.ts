@@ -49,15 +49,35 @@ export class ProfilService {
   
 
   getCycles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}base/cycles`);
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get<any[]>(`${this.baseUrl}base/cycles`,{headers});
   }
 
   getNiveaux(cycleId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}base/cycles/${cycleId}/niveaux`);
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get<any[]>(`${this.baseUrl}base/cycles/${cycleId}/niveaux`,{headers});
   }
 
   getUserNiveau(userId: any): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}base/user/${userId}/niveau`);
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get<any>(`${this.baseUrl}base/user/${userId}/niveau`,{headers});
+  }
+  
+  updateUserNiveau(userId: any, niveauId: number): Observable<any> {
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.put(`${this.baseUrl}base/user/${userId}/niveau`, { niveau_id: niveauId },{headers});
   }
   
 }

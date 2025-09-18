@@ -3,6 +3,7 @@ import { ProfilService } from '../../profil.service';
 import { AuthService } from '../../auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-niveau',
@@ -19,6 +20,10 @@ export class NiveauComponent implements OnInit {
   selectedCycleId: number | null = null;
   userNiveauId: number | null = null;
   ngOnInit(): void {
+    this.charger_cycle_niveau()
+  }
+
+  charger_cycle_niveau(){
         // Charger les cycles
         this.profilService.getCycles().subscribe(res => this.cycles = res);
 
@@ -38,4 +43,17 @@ export class NiveauComponent implements OnInit {
     this.profilService.getNiveaux(cycleId).subscribe(res => this.niveaux = res);
   }
 
+  onNiveauChange(niveauId: number) {
+    this.profilService.updateUserNiveau(this.authService.getUserId(), niveauId)
+      .subscribe({
+        next: res => {
+          console.log(res.message);
+          this.charger_cycle_niveau()
+          const myModal = new Modal(document.getElementById('cycle_niveau') as HTMLElement);
+          myModal.show();
+
+        },
+        error: err => console.error(err)
+      });
+    }
 }
