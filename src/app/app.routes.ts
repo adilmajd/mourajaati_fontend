@@ -8,6 +8,7 @@ import { ErrorComponent } from './error/error.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
 import { RoleComponent } from './admin/role/role.component';
+import { AvatarComponent } from './profil/avatar/avatar.component';
 
 export const routes: Routes = [
     {
@@ -26,7 +27,14 @@ export const routes: Routes = [
         path:"profil",
         component:ProfilComponent,
         canActivate:[authGuard],
-        title:"Pofil"
+        title:"Pofil",
+        children:[
+            {
+                path:"avatar",
+                component:AvatarComponent,
+                title:"Gestion des utilsateurs Avatar"
+            }
+    ]
     }
     ,
     {

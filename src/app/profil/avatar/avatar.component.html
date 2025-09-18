@@ -1,0 +1,17 @@
+<h3>Gestion Avatar</h3>
+
+<div class="row">
+    <div class="col-6">
+        <span>jpg, jpeg, png</span><br>
+        <input type="file" (change)="onFileSelected($event, authService.getUserId())" />
+        <span *ngIf="load_img" style="width: 3vh; height: 3vh;" class="spinner-border text-dark"></span>
+        <img *ngIf="avatar!='';else ImageUser_Par_Defaut" [src]="avatar" width="100" />
+        <ng-template #ImageUser_Par_Defaut>
+           <i class="bi bi-person" style="font-size: 5rem;"></i>
+        </ng-template>
+        
+        
+    </div>
+    <div class="col-6">
+    </div>
+</div>
