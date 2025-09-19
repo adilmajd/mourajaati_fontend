@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center" *ngIf="load_info">
+    <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+</div>
+
+<section *ngIf="!load_info" class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">{{user?.nom}} {{user?.prenom}}</h3>
+                    <h6 class="theme-color lead">Login : {{user?.login}}</h6>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Date de naissance</label>
+                                <p>{{user?.date_naissance}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Ecole</label>
+                                <p>{{user?.ecole_nom}}</p>
+                            </div>
+                            
+                            <div class="media">
+                                <label>Mail</label>
+                                <p>{{user?.mail}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media">
+                                <label>Téléphone</label>
+                                <p>{{user?.telephone}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Niveau</label>
+                                <p>{{user?.niveau_nom}} {{user?.cycle_nom}}</p>
+                            </div>
+                            <div class="media">
+                                <label>Ville</label>
+                                <p>ooooo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img *ngIf="avatar!='';else ImageUser_Par_Defaut" [src]="avatar" style="width: 34vh;"/>
+                    <ng-template #ImageUser_Par_Defaut>
+                       <i class="bi bi-person" style="font-size: 5rem;"></i>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="counter">
+            <div class="row">
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                        <p class="m-0px font-w-600">Commentaires</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="150" data-speed="150">150</h6>
+                        <p class="m-0px font-w-600">posts</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="850" data-speed="850">850</h6>
+                        <p class="m-0px font-w-600">Exercices</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="190" data-speed="190">190</h6>
+                        <p class="m-0px font-w-600">Examens</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

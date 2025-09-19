@@ -2,6 +2,9 @@
 
 <div class="row">
     <div class="col-6">
+        <div class="d-flex justify-content-center" *ngIf="load_avatar_bool">
+            <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+        </div>
         <span>jpg, jpeg, png</span><br>
         <input type="file" (change)="onFileSelected($event, authService.getUserId())" />
         <span *ngIf="load_img" style="width: 3vh; height: 3vh;" class="spinner-border text-dark"></span>
@@ -9,8 +12,6 @@
         <ng-template #ImageUser_Par_Defaut>
            <i class="bi bi-person" style="font-size: 5rem;"></i>
         </ng-template>
-        
-        
     </div>
     <div class="col-6">
     </div>
@@ -31,7 +32,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-            Avatar mis à jour !
+            {{message}}
         </div>
   
         <!-- Modal footer -->

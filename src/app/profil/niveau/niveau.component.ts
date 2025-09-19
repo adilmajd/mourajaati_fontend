@@ -19,6 +19,9 @@ export class NiveauComponent implements OnInit {
   niveaux: any[] = [];
   selectedCycleId: number | null = null;
   userNiveauId: number | null = null;
+  public load_cycle_niveau_bool:boolean=false;
+  public message:string="";
+
   ngOnInit(): void {
     this.charger_cycle_niveau()
   }
@@ -39,8 +42,23 @@ export class NiveauComponent implements OnInit {
   }
 
   loadNiveaux(cycleId: number) {
+    this.load_cycle_niveau_bool=true;
     this.selectedCycleId = cycleId;
-    this.profilService.getNiveaux(cycleId).subscribe(res => this.niveaux = res);
+    this.profilService.getNiveaux(cycleId).subscribe({
+      next: (res:any) => {
+        this.niveaux = res
+      },
+      error: (err) => {
+        console.error("Erreur :", err);
+        this.load_cycle_niveau_bool=false;
+        this.message=err
+        const myModal = new Modal(document.getElementById('cycle_niveau') as HTMLElement);
+        myModal.show();
+      },
+      complete:()=> {
+        this.load_cycle_niveau_bool=false;
+      }
+    });
   }
 
   onNiveauChange(niveauId: number) {
@@ -49,11 +67,17 @@ export class NiveauComponent implements OnInit {
         next: res => {
           console.log(res.message);
           this.charger_cycle_niveau()
+          this.message="Le niveau mis à jour !"
           const myModal = new Modal(document.getElementById('cycle_niveau') as HTMLElement);
           myModal.show();
 
         },
-        error: err => console.error(err)
+        error: (err) => {
+          console.error("Erreur :", err);
+          this.message=err
+          const myModal = new Modal(document.getElementById('cycle_niveau') as HTMLElement);
+          myModal.show();
+        }        
       });
     }
 }

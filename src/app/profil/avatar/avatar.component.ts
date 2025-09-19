@@ -21,7 +21,8 @@ export class AvatarComponent implements OnInit{
   private profilService = inject(ProfilService);
   public authService = inject(AuthService);
   public load_img:boolean=false;
-  
+  public load_avatar_bool:boolean=false;
+  public message:string=""
 
   onFileSelected(event: any, userId: any) {
     const file: File = event.target.files[0];
@@ -33,10 +34,12 @@ export class AvatarComponent implements OnInit{
         error: (err) => {
           console.error("Erreur upload:", err);
           this.load_img=false;
+          this.message=err;
         },
         complete:()=> {
           this.load_img=false;
           this.getAvatar();
+          this.message="Avatar mis à jour !";
           const myModal = new Modal(document.getElementById('Avatar_user') as HTMLElement);
           myModal.show();
         }
@@ -45,16 +48,18 @@ export class AvatarComponent implements OnInit{
   }
 
   getAvatar():any{
+    this.load_avatar_bool=true;
       this.profilService.getAvatar(this.authService.getUserId()).subscribe({
-        next: (res) => {
+        next: (res:any) => {
           this.avatar=this.profilService.baseUrl+res;
         },
         error: (err) => {
           this.avatar="";
           console.error( err);
+          this.load_avatar_bool=false;
         },
         complete:()=> {
-          
+          this.load_avatar_bool=false;
         }
       });
   }

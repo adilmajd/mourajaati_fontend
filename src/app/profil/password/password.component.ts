@@ -22,6 +22,10 @@ export class PasswordComponent {
     password1:new FormControl('',[Validators.required,Validators.minLength(6)]),
     password2:new FormControl('',[Validators.required,Validators.minLength(6)])
   });
+  public load_update_password:boolean=false;
+  public message:string="";
+
+
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('password1')!.value === form.get('password2')!.value
@@ -29,25 +33,40 @@ export class PasswordComponent {
   }
 
   onSubmit() {
+    this.message="";
     if (this.passwordForm.valid) {
-    const password1 = this.passwordForm.value.password1
-    const password2 =  this.passwordForm.value.password2
-    
-      this.profilService.updatePassword(this.authService.getUserId(),password1,password2).subscribe({
-        next: res => {
-          console.log(res.message); // afficher message succès
+      if(this.passwordMatchValidator(this.passwordForm)){
+        //alert("Les chmaps ne sont pas identiques")
+        this.message="Les chmaps ne sont pas identiques";
+        const myModal = new Modal(document.getElementById('password_msg') as HTMLElement);
+                    myModal.show();
+      }else{
+              this.load_update_password=true;
+              const password1 = this.passwordForm.value.password1
+              const password2 =  this.passwordForm.value.password2
+              
+                this.profilService.updatePassword(this.authService.getUserId(),password1,password2).subscribe({
+                  next: res => {
+                    console.log(res.message); // afficher message succès
+                    this.message="Mot de passe mis à jour !";
+                    const myModal = new Modal(document.getElementById('password_msg') as HTMLElement);
+                    myModal.show();
 
-          const myModal = new Modal(document.getElementById('password_msg') as HTMLElement);
-          myModal.show();
+                    this.passwordForm.reset();
+                  },
+                  error: err => {
+                    console.error(err);
+                    this.load_update_password=false;
+                    this.message=err;
+                    const myModal = new Modal(document.getElementById('password_msg') as HTMLElement);
+                    myModal.show();
+                  },complete:()=> {
+                    this.passwordForm.reset();
+                    this.load_update_password=false;
+                  },
+                });
+      }
 
-          this.passwordForm.reset();
-        },
-        error: err => {
-          console.error(err);
-        },complete:()=> {
-          this.passwordForm.reset();
-        },
-      });
     } else {
       alert("Formulaire invalide")
     }

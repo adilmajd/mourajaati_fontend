@@ -2,6 +2,7 @@ import { Injectable,inject } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from '..//environments/environments';
+import { Iuserdetails } from './model/iuserdetails';
 
 
 @Injectable({
@@ -80,4 +81,7 @@ export class ProfilService {
     return this.http.put(`${this.baseUrl}base/user/${userId}/niveau`, { niveau_id: niveauId },{headers});
   }
   
+  getUserDetails(userId: any): Observable<Iuserdetails> {
+    return this.http.get<Iuserdetails>(`${this.baseUrl}users/user/${userId}/details`);
+  }
 }

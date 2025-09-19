@@ -16,7 +16,7 @@
             <a class="nav-link" href="#">Link</a>
           </li>  
           <li class="nav-item"  *ngIf="auth_serv.isLogedIn()">
-            <a class="nav-link" routerLink="profil">Profil</a>
+            <a class="nav-link" routerLink="profil/information">Profil</a>
           </li>  
 
           <li class="nav-item" *ngIf="auth_serv.isLogedIn() && auth_serv.hasRole('admin')">

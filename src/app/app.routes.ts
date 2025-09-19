@@ -11,6 +11,7 @@ import { RoleComponent } from './admin/role/role.component';
 import { AvatarComponent } from './profil/avatar/avatar.component';
 import { PasswordComponent } from './profil/password/password.component';
 import { NiveauComponent } from './profil/niveau/niveau.component';
+import { InformationComponent } from './profil/information/information.component';
 
 export const routes: Routes = [
     {
@@ -46,6 +47,12 @@ export const routes: Routes = [
                 path:"niveau",
                 component:NiveauComponent,
                 title:"Gestion des utilsateurs niveau"
+            }
+            ,
+            {
+                path:"information",
+                component:InformationComponent,
+                title:"Mes informations"
             }
     ]
     }

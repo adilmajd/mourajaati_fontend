@@ -20,6 +20,11 @@
           </div>
     </div>
 </div>
+<div class="row col">
+  <div class="d-flex justify-content-center" *ngIf="load_cycle_niveau_bool">
+    <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+</div>
+</div>
 
 
 
@@ -37,7 +42,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-            Le niveau mis à jour !
+            {{message}}
         </div>
   
         <!-- Modal footer -->
