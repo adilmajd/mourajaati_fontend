@@ -4,6 +4,7 @@ import { FormGroup,FormsModule,ReactiveFormsModule,FormControl,Validators } from
 import { AuthService } from '../Services/auth.service';
 import { NgIf } from "@angular/common";
 import { RouterLink } from "@angular/router";
+import { Modal } from 'bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent {
   private back_serv = inject(BackendService);
   public auth_serv = inject(AuthService);
   message="";
+  public message_err:string="";
   public load:boolean=false;
 
   public loginForm = new FormGroup({
@@ -24,6 +26,7 @@ export class LoginComponent {
   });
 
   onSubmit(){
+    
     if(this.loginForm.invalid){
       alert("Veuiller remplir les champs !")
     }else{
@@ -31,23 +34,42 @@ export class LoginComponent {
       //this.back_serv.login(this.login,this.password).subscribe(
       this.back_serv.login(this.loginForm.value["username"],this.loginForm.value["password"]).subscribe(
         {
+          
           next: (response) => {
-            this.message = response.message; // "Connexion réussie"
-            let data_token = response.user.access_token;
-            let data_roles = response.user.roles;
-            let data_permissions = response.user.permissions;
-            let user_id = response.user.user_id;
-            this.auth_serv.login(data_token,data_roles,data_permissions,user_id)
-            console.log(this.message)
-            console.log(data_token)
-            console.log(data_roles)
-            console.log(data_permissions)
+
+            try {
+              this.message = response.message; // "Connexion réussie"
+              let data_token = response.user.access_token;
+              let data_roles = response.user.roles;
+              let data_permissions = response.user.permissions;
+              let user_id = response.user.user_id;
+              this.auth_serv.login(data_token,data_roles,data_permissions,user_id)
+              console.log(this.message)
+              console.log(data_token)
+              console.log(data_roles)
+              console.log(data_permissions)
+
+              this.message = "Bonjour !"; 
+              const myModal = new Modal(document.getElementById('login_user') as HTMLElement);
+              myModal.show();
+            } catch (error) {
+              this.message = "probleme de connection !"; 
+              const myModal = new Modal(document.getElementById('login_user') as HTMLElement);
+              myModal.show();
+            }
+
+           
             
           },
-          error: (err) => {
+          error: (err:any) => {
+            
             this.load=false;
             this.message = err.error.detail; // "Identifiants invalides..."
-            console.log(this.message)
+            //console.log(this.message)
+            const myModal = new Modal(document.getElementById('login_user') as HTMLElement);
+            myModal.show();
+            
+            
           },
           
           complete:() => {
@@ -60,33 +82,4 @@ export class LoginComponent {
 
 
   }
-
-/*
-  testme(){
-    
-    this.back_serv.testme().subscribe(
-      (data:any)=>{
-        console.log({"data message":data})
-      }
-    );
-    
-    console.log({"data message":localStorage.getItem("token")})
-  }
-
-  test_lire(){
-    this.back_serv.test_lire().subscribe(
-      (data:any)=>{
-        console.log({"data message":data})
-      }
-    );
-  }
-
-  test_ecrire(){
-    this.back_serv.test_ecrire().subscribe(
-      (data:any)=>{
-        console.log({"data message":data})
-      }
-    );
-  }
-  */
 }

@@ -14,6 +14,7 @@ import { NiveauComponent } from './profil/niveau/niveau.component';
 import { InformationComponent } from './profil/information/information.component';
 import { TypecoursComponent } from './admin/typecours/typecours.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { CoursComponent } from './admin/cours/cours.component';
 
 export const routes: Routes = [
     {
@@ -88,6 +89,12 @@ export const routes: Routes = [
                 path:"type",
                 component:TypecoursComponent,
                 title:"Gestion des types"
+            }
+            ,
+            {
+                path:"cours",
+                component:CoursComponent,
+                title:"Gestion des cours"
             }
     ]
     }

@@ -190,6 +190,15 @@ export class AdminService {
 
     return this.http.put(`${this.baseUrl}cours/type/${type_cours_id}`,payload,{headers});
   }
+
+
+  getCoursNvType(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}cours/cours_nv_typ`);
+  }
+
+  updateCoursNvType(coursId: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}cours/${coursId}`, data);
+  }
   
 }
 

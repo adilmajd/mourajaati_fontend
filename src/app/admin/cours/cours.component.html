@@ -1,1 +1,22 @@
-<p>cours works!</p>
+<div class="row">
+    <div class="col-6">
+        <div *ngFor="let cours of coursList" class="card p-2 my-2">
+            <h6>{{ cours.cours_titre }}</h6>
+            <label>Niveau:</label>
+            <select  (change)="onChange(cours)">
+              <option *ngFor="let n of cours.niveau" [value]="n.niveau_id">
+                {{ n.niveau_label }}
+              </option>
+            </select>
+          
+            <label>Type de cours:</label>
+            <select  (change)="onChange(cours)">
+              <option *ngFor="let t of typeCours" [value]="t.type_cours_id">
+                {{ t.type_cours_nom }}
+              </option>
+            </select>
+            
+          </div>
+          
+    </div>
+</div>
