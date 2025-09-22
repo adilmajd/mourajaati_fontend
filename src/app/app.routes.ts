@@ -12,6 +12,7 @@ import { AvatarComponent } from './profil/avatar/avatar.component';
 import { PasswordComponent } from './profil/password/password.component';
 import { NiveauComponent } from './profil/niveau/niveau.component';
 import { InformationComponent } from './profil/information/information.component';
+import { TypecoursComponent } from './admin/typecours/typecours.component';
 
 export const routes: Routes = [
     {
@@ -65,21 +66,27 @@ export const routes: Routes = [
         title:"Admin",
         children:[
             {
-                path:"users",// admin/users
+                path:"users",
                 component:UsersComponent,
                 title:"Gestion des utilsateurs"
             }
             ,
             {
-                path:"acceuil",// admin/acceuil
+                path:"acceuil",
                 component:AccueilComponent,
                 title:"Page d'administration"
             }
             ,
             {
-                path:"role",// admin/role
+                path:"role",
                 component:RoleComponent,
                 title:"Gestion des rôles"
+            }
+            ,
+            {
+                path:"type",
+                component:TypecoursComponent,
+                title:"Gestion des types"
             }
     ]
     }

@@ -1,13 +1,14 @@
 import { Injectable,inject } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-const baseUrl = 'http://127.0.0.1:8000/';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
   private http = inject(HttpClient);
+  public baseUrl = environment.apiUrl;
   
   constructor() { }
 
@@ -16,7 +17,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get(baseUrl + 'users/users/',{headers})
+    return this.http.get(`${this.baseUrl}users/users/`,{headers})
   }
 
   search_users(login:string,nom:string,prenom:string):Observable<any>{
@@ -29,7 +30,7 @@ export class AdminService {
     });
       let params = new HttpParams()
   .set('login',login).set('nom',nom).set('prenom',prenom);
-    return this.http.get(baseUrl + 'users/users_search',{params,headers})
+    return this.http.get(`${this.baseUrl}users/users_search`,{params,headers})
     }
   }
 
@@ -39,7 +40,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get(baseUrl + 'users/user/'+user_id_public+'/roles-permissions',{headers});
+    return this.http.get(`${this.baseUrl}users/user/`+user_id_public+'/roles-permissions',{headers});
   }
 
   get_all_roles():Observable<any>{
@@ -49,7 +50,7 @@ export class AdminService {
       Authorization: `Bearer ${token}`
     });
     
-    return this.http.get(baseUrl + 'users/roles/',{headers});
+    return this.http.get(`${this.baseUrl}users/roles/`,{headers});
   }
 
   get_all_permissions():Observable<any>{
@@ -59,7 +60,7 @@ export class AdminService {
       Authorization: `Bearer ${token}`
     });
     
-    return this.http.get(baseUrl + 'users/permissions/',{headers});
+    return this.http.get(`${this.baseUrl}users/permissions/`,{headers});
   }
 
   update_user_roles(user_id: string, role_ids: number[]): Observable<any> {
@@ -67,7 +68,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.put(`${baseUrl}users/user/${user_id}/roles`, { role_ids },{headers});
+    return this.http.put(`${this.baseUrl}users/user/${user_id}/roles`, { role_ids },{headers});
   }
 
   get_etat_by_user(user_id_public:string):Observable<any>{
@@ -76,7 +77,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get(baseUrl + 'users/user/'+user_id_public+'/etat',{headers});
+    return this.http.get(`${this.baseUrl}users/user/`+user_id_public+'/etat',{headers});
   }
 
   get_all_etat():Observable<any>{
@@ -84,7 +85,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get(baseUrl + 'users/etats/',{headers});
+    return this.http.get(`${this.baseUrl}users/etats/`,{headers});
   }
 
   updateUserEtat(userId: string, etatId: number): Observable<any> {
@@ -92,7 +93,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.put(`${baseUrl}users/user/${userId}/etat/${etatId}`, {headers});
+    return this.http.put(`${this.baseUrl}users/user/${userId}/etat/${etatId}`, {headers});
   }
 
   create_role(role_name:string): Observable<any> {
@@ -100,7 +101,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.post<any>(`${baseUrl}users/roles/`, { role_name }, {headers});
+    return this.http.post<any>(`${this.baseUrl}users/roles/`, { role_name }, {headers});
   }
 
   create_permission(permission_name:string): Observable<any> {
@@ -108,7 +109,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.post<any>(`${baseUrl}users/permissions/`, { permission_name }, {headers});
+    return this.http.post<any>(`${this.baseUrl}users/permissions/`, { permission_name }, {headers});
   }
 
   delete_roles(role_id:number): Observable<any> {
@@ -116,7 +117,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.delete<any>(`${baseUrl}users/roles/${role_id}`, {headers});
+    return this.http.delete<any>(`${this.baseUrl}users/roles/${role_id}`, {headers});
   }
 
   delete_permission(permission_id:number): Observable<any> {
@@ -124,7 +125,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.delete<any>(`${baseUrl}users/permissions/${permission_id}`, {headers});
+    return this.http.delete<any>(`${this.baseUrl}users/permissions/${permission_id}`, {headers});
   }
 
   getRolePermissions(role_id: number): Observable<any> {
@@ -132,7 +133,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.get(baseUrl + `users/roles/${role_id}/permissions`, {headers});
+    return this.http.get(`${this.baseUrl}users/roles/${role_id}/permissions`, {headers});
   }
 
   addPermissionToRole(role_id: number, permission_id: number) {
@@ -140,7 +141,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.post(`${baseUrl}users/roles/${role_id}/permissions/${permission_id}`, {headers});
+    return this.http.post(`${this.baseUrl}users/roles/${role_id}/permissions/${permission_id}`, {headers});
   }
   
   removePermissionFromRole(role_id: number, permission_id: number) {
@@ -148,7 +149,46 @@ export class AdminService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
-    return this.http.delete(`${baseUrl}users/roles/${role_id}/permissions/${permission_id}`,{headers});
+    return this.http.delete(`${this.baseUrl}users/roles/${role_id}/permissions/${permission_id}`,{headers});
+  }
+
+  create_type(type_cours_nom:string): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.post<any>(`${this.baseUrl}cours/type/`, { type_cours_nom }, {headers});
+  }
+
+  get_all_types():Observable<any>{
+    
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    
+    return this.http.get(`${this.baseUrl}cours/types/`,{headers});
+  }
+
+  delete_types(type_cours_id:number): Observable<any> {
+    const token = localStorage.getItem("Acces token");
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.delete<any>(`${this.baseUrl}cours/type/${type_cours_id}`, {headers});
+  }
+
+  updateType(type_cours_id: any, type_cours_nom: any): Observable<any> {
+    const token = localStorage.getItem("Acces token");  
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    const payload = {
+      "type_cours_nom": type_cours_nom,
+    };
+
+    return this.http.put(`${this.baseUrl}cours/type/${type_cours_id}`,payload,{headers});
   }
   
 }

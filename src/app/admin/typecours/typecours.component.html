@@ -1,1 +1,59 @@
 <p>typecours works!</p>
+<div class="row">
+    <div class="col-4">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Entrer Type</span>
+            <input type="text" class="form-control" [(ngModel)]="input_type" >
+            <button class="btn btn-outline-dark" (click)="create_type()">Créer type</button>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="d-flex justify-content-center" *ngIf="load_type_bool">
+            <div class="spinner-border text-dark" style="width: 20vh; height: 20vh;text-align: center;"></div>
+        </div>
+    </div>
+    <ul *ngFor="let item of all_types" class="list-group bg-transparent mt-2">
+        <div class="row">
+            <div class="col-6"><li class="list-group-item bg-transparent">{{item.type_cours_nom}}</li></div>
+            <div class="col-6">
+                <i class="bi bi-x-circle-fill text-danger" (click)="delete_types(item.type_cours_id)"></i> 
+                <i class="bi bi-pencil-fill p-2" (click)="edit_type(item.type_cours_id,item.type_cours_nom)"></i>
+                <span *ngIf="delete_type_id === item.type_cours_id" style="width: 3vh; height: 3vh;" class="spinner-border text-dark"></span>
+            </div>
+        </div>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="type_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">type de cours</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input type="text" class="form-control" [(ngModel)]="input_edit_nom" [value]="input_edit_nom" >
+            <button class="btn btn-outline-dark" (click)="edit_type_back(input_edit_id)">Modifier type</button>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
