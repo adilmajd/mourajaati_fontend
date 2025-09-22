@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ProfilService } from '../../profil.service';
-import { AuthService } from '../../auth.service';
+import { ProfilService } from '../../Services/profil.service';
+import { AuthService } from '../../Services/auth.service';
 import { Iuserdetails } from '../../model/iuserdetails';
 import { NgForOf, NgIf } from "@angular/common";
 

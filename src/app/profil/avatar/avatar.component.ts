@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ProfilService } from '../../profil.service';
+import { ProfilService } from '../../Services/profil.service';
 import { NgForOf, NgIf } from "@angular/common";
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../Services/auth.service';
 import { Modal } from 'bootstrap';
 
 

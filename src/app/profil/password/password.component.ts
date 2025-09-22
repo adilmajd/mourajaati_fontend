@@ -1,8 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component,inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProfilService } from '../../profil.service';
-import { AuthService } from '../../auth.service';
+import { ProfilService } from '../../Services/profil.service';
+import { AuthService } from '../../Services/auth.service';
 import { Modal } from 'bootstrap';
 
 //const 

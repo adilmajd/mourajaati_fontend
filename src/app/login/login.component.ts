@@ -1,7 +1,7 @@
 import { Component,inject } from '@angular/core';
-import { BackendService } from '../backend.service';
+import { BackendService } from '../Services/backend.service';
 import { FormGroup,FormsModule,ReactiveFormsModule,FormControl,Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../Services/auth.service';
 import { NgIf } from "@angular/common";
 
 @Component({

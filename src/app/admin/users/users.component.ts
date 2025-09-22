@@ -1,6 +1,6 @@
 import { Component, OnInit,inject } from '@angular/core';
 import {CommonModule} from '@angular/common'
-import { AdminService } from '../../admin.service';
+import { AdminService } from '../../Services/admin.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({

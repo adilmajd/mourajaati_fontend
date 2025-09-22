@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { AdminService } from '../../admin.service';
+import { AdminService } from '../../Services/admin.service';
 import { NgForOf, NgIf } from "@angular/common";
 import { FormsModule } from '@angular/forms';
 

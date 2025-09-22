@@ -1,5 +1,5 @@
 import { Component,inject,OnInit } from '@angular/core';
-import { BackendService } from '../backend.service';
+import { BackendService } from '../Services/backend.service';
 import { LoginComponent } from "../login/login.component";
 import { AdminComponent } from "../admin/admin.component";
 import { RouterOutlet } from "@angular/router";

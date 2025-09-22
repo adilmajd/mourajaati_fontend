@@ -1,8 +1,8 @@
 import { Injectable,inject } from '@angular/core';
 import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { environment } from '..//environments/environments';
-import { Iuserdetails } from './model/iuserdetails';
+import { environment } from '../../environments/environments';
+import { Iuserdetails } from '../model/iuserdetails';
 
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Component ,inject} from '@angular/core';
-import { BackendService } from '../backend.service';
+import { BackendService } from '../Services/backend.service';
 @Component({
   selector: 'app-accueil',
   standalone: true,
