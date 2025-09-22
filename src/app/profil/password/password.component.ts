@@ -63,7 +63,7 @@ export class PasswordComponent {
                   },complete:()=> {
                     this.passwordForm.reset();
                     this.load_update_password=false;
-                  },
+                  }
                 });
       }
 

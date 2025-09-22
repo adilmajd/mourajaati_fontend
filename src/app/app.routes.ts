@@ -13,6 +13,7 @@ import { PasswordComponent } from './profil/password/password.component';
 import { NiveauComponent } from './profil/niveau/niveau.component';
 import { InformationComponent } from './profil/information/information.component';
 import { TypecoursComponent } from './admin/typecours/typecours.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 export const routes: Routes = [
     {
@@ -89,6 +90,12 @@ export const routes: Routes = [
                 title:"Gestion des types"
             }
     ]
+    }
+    ,
+    {
+        path:"inscription",
+        component:InscriptionComponent,
+        title:"Page d'inscription"
     }
     ,
     {

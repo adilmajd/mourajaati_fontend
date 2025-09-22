@@ -20,7 +20,7 @@
         </div>
         
         <div class="d-flex mb-5 align-items-center">
-          <span class="ml-auto"><a href="#" class="forgot-pass">Mot de pass oublié</a></span> 
+
         </div>
 
         <input *ngIf="!load" type="submit" value="Connecter" class="btn text-white btn-block btn-success" [disabled]="loginForm.invalid">
@@ -29,7 +29,14 @@
           <span class="spinner-border spinner-border-sm"></span>
           <span>Loading..</span>
         </button>
-        
+        <div class="row mt-3">
+          <div class="col-6">
+            <button class="btn btn-outline-danger">Mot de passe oublié</button>
+          </div>
+          <div class="col-6">
+            <a class="btn btn-outline-dark" routerLink="/inscription">Inscription</a>
+          </div>
+        </div>
       </form>   
       </div>
       <div class="col-md-8"  *ngIf="auth_serv.isLogedIn()">

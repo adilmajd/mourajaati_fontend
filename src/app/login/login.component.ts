@@ -3,11 +3,12 @@ import { BackendService } from '../Services/backend.service';
 import { FormGroup,FormsModule,ReactiveFormsModule,FormControl,Validators } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
 import { NgIf } from "@angular/common";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

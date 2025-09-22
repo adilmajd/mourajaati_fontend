@@ -50,19 +50,11 @@ export class ProfilService {
   
 
   getCycles(): Observable<any[]> {
-    const token = localStorage.getItem("Acces token");  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-    return this.http.get<any[]>(`${this.baseUrl}base/cycles`,{headers});
+    return this.http.get<any[]>(`${this.baseUrl}base/cycles`);
   }
 
   getNiveaux(cycleId: number): Observable<any[]> {
-    const token = localStorage.getItem("Acces token");  
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-    return this.http.get<any[]>(`${this.baseUrl}base/cycles/${cycleId}/niveaux`,{headers});
+    return this.http.get<any[]>(`${this.baseUrl}base/cycles/${cycleId}/niveaux`);
   }
 
   getUserNiveau(userId: any): Observable<any> {

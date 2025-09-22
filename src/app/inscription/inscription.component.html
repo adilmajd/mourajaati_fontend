@@ -1,0 +1,98 @@
+<div class="container">
+    <form action="/action_page.php">
+        <div class="row">
+            <div class="col-6">
+
+                <div class="mb-3 mt-3">
+                    <label for="nom" class="form-label">Nom:</label>
+                    <input type="text" class="form-control" id="nom" placeholder="Enter nom" name="nom">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="prenom" class="form-label">Prenom:</label>
+                    <input type="text" class="form-control" id="prenom" placeholder="Enter prenom" name="prenom">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="dn" class="form-label">Date Naissance:</label>
+                    <input type="date" class="form-control" id="dn" placeholder="Enter Date Naissance" name="dn">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="telephone" class="form-label">Téléphone:</label>
+                    <input type="text" class="form-control" id="telephone" placeholder="Enter telephone" name="telephone">
+                </div>
+
+                
+
+
+            </div>
+            <div class="col-6">
+                <div class="mb-3 mt-3">
+                    <label for="login" class="form-label">Login:</label>
+                    <input type="text" class="form-control" id="login" placeholder="Enter login" name="login">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="password2" class="form-label">Saisissez de nouveau Password:</label>
+                    <input type="password" class="form-control" id="password2" placeholder="Saisissez de nouveau password" name="password2">
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="" class="form-label">Cycle:</label>
+                    <select class="form-select">
+                        <option selected disabled>Cycle</option>
+                        <option  *ngFor="let item of cycles" value="{{item.cycle_id}}">{{item.label}}</option>
+                    </select>
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="" class="form-label">Nivau:</label>
+                    <select class="form-select">
+                        <option>Niveau</option>
+                    </select>
+               </div>
+            </div>
+        </div>
+        
+    </form> 
+</div>
+
+
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="password_msg">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Password</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            {{message}}
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
