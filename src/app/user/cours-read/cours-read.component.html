@@ -1,3 +1,12 @@
 <div class="container">
-    <p>cours-read works!</p>
+    <div *ngFor="let typeNom of groupedCours | keyvalue" class="card p-3 my-3 bg-success-subtle">
+        <h4 class="fw-bold">{{ typeNom.key }}</h4>
+        <ul class="list-group list-group-flush">
+          <li  class="list-group-item bg-success-subtle" *ngFor="let cours of typeNom.value ">
+            {{ cours.cours_titre }}
+          </li>
+          <hr>
+        </ul>
+      </div>
+      
 </div>

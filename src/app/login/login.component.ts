@@ -43,11 +43,13 @@ export class LoginComponent {
               let data_roles = response.user.roles;
               let data_permissions = response.user.permissions;
               let user_id = response.user.user_id;
-              this.auth_serv.login(data_token,data_roles,data_permissions,user_id)
+              let niveau_id = response.user.niveau;
+              this.auth_serv.login(data_token,data_roles,data_permissions,user_id,niveau_id)
               console.log(this.message)
               console.log(data_token)
               console.log(data_roles)
               console.log(data_permissions)
+              console.log(niveau_id)
 
               this.message = "Bonjour !"; 
               const myModal = new Modal(document.getElementById('login_user') as HTMLElement);

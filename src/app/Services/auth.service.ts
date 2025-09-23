@@ -12,16 +12,18 @@ export class AuthService {
   private ROLE_KEY = 'roles';
   private PERMISSION_KEY = 'permissions';
   private user_KEY = 'user_id';
+  private niveau_KEY = 'niveau';
 
   private token: string | null = null;
   private roles: string[] = [];
   private permissions: string[] = [];
 
-  login(token : string,roles:string[],permissions:string[],user_id:string){
+  login(token : string,roles:string[],permissions:string[],user_id:string,niveau:string){
     localStorage.setItem(this.TOKEN_KEY,token);
     localStorage.setItem(this.ROLE_KEY,JSON.stringify(roles));
     localStorage.setItem(this.PERMISSION_KEY,JSON.stringify(permissions));
     localStorage.setItem(this.user_KEY,user_id);
+    localStorage.setItem(this.niveau_KEY,niveau);
   }
 
   logout(){
@@ -29,7 +31,7 @@ export class AuthService {
     localStorage.removeItem(this.ROLE_KEY);
     localStorage.removeItem(this.PERMISSION_KEY);
     localStorage.removeItem(this.user_KEY);
-
+    localStorage.removeItem(this.niveau_KEY);
   }
 
   isLogedIn():boolean{
@@ -50,6 +52,10 @@ export class AuthService {
 
   getUserId():string | null{
     return localStorage.getItem(this.user_KEY); // || <> ou or
+  }
+
+  getNiveauId():string | null{
+    return localStorage.getItem(this.niveau_KEY); // || <> ou or
   }
 
   hasRole(role:string):boolean{

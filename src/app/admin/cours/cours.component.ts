@@ -132,8 +132,6 @@ export class CoursComponent implements OnInit{
     if (!input_ajouter_nom || input_ajouter_nom.trim() === "" || !this.selectedniveauId || !this.selectedTypeId){
       this.message="Veuillez remplir le nom !"
     }else{
-      this.myModal_ajouter.hide();
-
       this.adminService.addCours({
         cours_titre: String(this.input_ajouter_nom),
         niveau_id: this.selectedniveauId,
@@ -152,7 +150,9 @@ export class CoursComponent implements OnInit{
         error: (err) => {
           console.error(err);
           this.message = "Erreur lors de l'ajout du cours !";
-        }
+        },complete: () => {
+          this.myModal_ajouter.hide();
+        },
       });
     }
   }
