@@ -1,16 +1,21 @@
 <div class="row">
     <div class="col-6">
-        <div *ngFor="let cours of coursList" class="card p-2 my-2">
-            <h6>{{ cours.cours_titre }}</h6>
+        <div *ngFor="let cours of coursList" class="card p-2 my-2 bg-transparent">
+            <h6>{{ cours.cours_titre }}</h6><br>
+            <div class="row">
+              <div class="col-3"><button class="btn btn-outline-info btn-sm" (click)="modifier_nom(cours.cours_titre,cours.cours_id)">Modifier le Nom</button></div>
+              <div class="col-3"><button class="btn btn-outline-danger btn-sm" (click)="supprimerCours(cours)">Supprimer</button></div>
+              <div class="col-3"><button class="btn btn-outline-warning btn-sm" (click)="ajouter()">Ajouter</button></div>
+            </div>
             <label>Niveau:</label>
-            <select  (change)="onChange(cours)">
-              <option *ngFor="let n of cours.niveau" [value]="n.niveau_id">
+            <select [(ngModel)]="cours.niveau.niveau_id" (change)="onChange(cours)">
+              <option *ngFor="let n of niveaux" [value]="n.niveau_id">
                 {{ n.niveau_label }}
               </option>
             </select>
           
             <label>Type de cours:</label>
-            <select  (change)="onChange(cours)">
+            <select [(ngModel)]="cours.type_cours.type_cours_id" (change)="onChange(cours)">
               <option *ngFor="let t of typeCours" [value]="t.type_cours_id">
                 {{ t.type_cours_nom }}
               </option>
@@ -19,4 +24,112 @@
           </div>
           
     </div>
+</div>
+
+
+
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="gestion_cours">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Gestion des cours</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          {{message}}
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="gestion_modifier_cours">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modification le nom</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <input type="text" class="form-control" [(ngModel)]="input_edit_nom" [value]="input_edit_nom" ><br>
+          <button class="btn btn-outline-dark btn-sm mt-1" (click)="update_nom_cours(input_edit_id,input_edit_nom)">Modifier le nom</button> <span>{{message}}</span>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- The Modal -->
+<div class="modal fade" id="gestion_ajouter_cours">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ajouter</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <input type="text" class="form-control" [(ngModel)]="input_ajouter_nom" [value]="input_ajouter_nom" ><br>
+          
+          <select class="form-select m-1" [(ngModel)]="selectedCycleId" (change)="loadNiveaux(selectedCycleId)">
+            <option selected disabled>Cycle</option>
+            <option *ngFor="let c of cycles" [value]="c.cycle_id">{{ c.label }}</option>
+          </select>
+
+          <select
+              class="form-select m-1"
+              [(ngModel)]="selectedniveauId"  (change)="select_niveau(selectedniveauId)">
+              <option [ngValue]="null" disabled>Niveau</option>
+              <option *ngFor="let n of niveaux_cycle" [value]="n.niveau_id">{{ n.niveau_label }}</option>
+          </select>
+          <select
+              class="form-select m-1"
+              [(ngModel)]="selectedTypeId"  (change)="select_type(selectedTypeId)">
+              <option [ngValue]="null" disabled>Type</option>
+              <option *ngFor="let t of typeCours" [value]="t.type_cours_id">{{ t.type_cours_nom }}</option>
+          </select>
+
+
+          <button class="btn btn-outline-dark btn-sm mt-1" (click)="Ajouter_cours_back(input_ajouter_nom)">Ajouter</button> <span class="text-danger m-1">{{message}}</span>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
 </div>
