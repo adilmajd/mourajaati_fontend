@@ -1,11 +1,11 @@
 <div class="row">
+    <div class="col-1"><button class="btn btn-outline-warning btn-sm" (click)="ajouter()">Ajouter</button></div>
     <div class="col-6">
         <div *ngFor="let cours of coursList" class="card p-2 my-2 bg-transparent">
             <h6>{{ cours.cours_titre }}</h6><br>
             <div class="row">
               <div class="col-3"><button class="btn btn-outline-info btn-sm" (click)="modifier_nom(cours.cours_titre,cours.cours_id)">Modifier le Nom</button></div>
               <div class="col-3"><button class="btn btn-outline-danger btn-sm" (click)="supprimerCours(cours)">Supprimer</button></div>
-              <div class="col-3"><button class="btn btn-outline-warning btn-sm" (click)="ajouter()">Ajouter</button></div>
             </div>
             <label>Niveau:</label>
             <select [(ngModel)]="cours.niveau.niveau_id" (change)="onChange(cours)">
@@ -20,9 +20,7 @@
                 {{ t.type_cours_nom }}
               </option>
             </select>
-            
           </div>
-          
     </div>
 </div>
 

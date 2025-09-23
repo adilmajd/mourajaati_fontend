@@ -217,8 +217,8 @@ export class AdminService {
   deleteCours(cours_id: number) {
     return this.http.delete(`${this.baseUrl}cours/cour/${cours_id}`);
   }
-  
-  addCours(cours: {cours_titre: string, niveau_id: number, type_cours_id: number}): Observable<any> {
+
+  addCours(cours: {cours_titre: string, niveau_id: number, type_cours_id: number,user_public_id:string}): Observable<any> {
     return this.http.post(`${this.baseUrl}cours/cour/`, cours);
   }
   

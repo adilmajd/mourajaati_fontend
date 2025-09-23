@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { Modal } from 'bootstrap';
 import { ProfilService } from '../../Services/profil.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-cours',
@@ -22,6 +23,7 @@ export class CoursComponent implements OnInit{
   myModal_ajouter!: Modal;
   private adminService = inject(AdminService)
   private profilService = inject(ProfilService)
+  private authService = inject(AuthService)
   public coursList: any[] = [];
   public niveaux: any[] = [];   
   public niveaux_cycle: any[] = [];   
@@ -135,7 +137,8 @@ export class CoursComponent implements OnInit{
       this.adminService.addCours({
         cours_titre: String(this.input_ajouter_nom),
         niveau_id: this.selectedniveauId,
-        type_cours_id: this.selectedTypeId
+        type_cours_id: this.selectedTypeId,
+        user_public_id: String(this.authService.getUserId())
       }).subscribe({
         next: (res) => {
           console.log(res);

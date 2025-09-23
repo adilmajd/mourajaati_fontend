@@ -15,6 +15,7 @@ import { InformationComponent } from './profil/information/information.component
 import { TypecoursComponent } from './admin/typecours/typecours.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { CoursComponent } from './admin/cours/cours.component';
+import { CoursReadComponent } from './user/cours-read/cours-read.component';
 
 export const routes: Routes = [
     {
@@ -103,6 +104,12 @@ export const routes: Routes = [
         path:"inscription",
         component:InscriptionComponent,
         title:"Page d'inscription"
+    }
+    ,
+    {
+        path:"cours",
+        component:CoursReadComponent,
+        title:"Cours"
     }
     ,
     {
