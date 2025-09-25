@@ -2,9 +2,33 @@
     <div *ngFor="let typeNom of groupedCours | keyvalue" class="card p-3 my-3 bg-success-subtle">
         <h4 class="fw-bold">{{ typeNom.key }}</h4>
         <ul class="list-group list-group-flush">
-          <li  class="list-group-item bg-success-subtle" *ngFor="let cours of typeNom.value ">
-            {{ cours.cours_titre }}
-          </li>
+              <li  class="list-group-item bg-success-subtle" *ngFor="let cours of typeNom.value ">
+                
+                <div class="row">
+                  <div class="col-4">{{ cours.cours_titre }}</div>
+                    <div class="col-3">
+                      <button type="button" class="btn btn-outline-success btn-sm">
+                        Cours <span class="badge"><i class="bi bi-book-fill text-success"></i></span>
+                      </button>
+                    </div>
+                    <div class="col-2">
+                      <button type="button" class="btn btn-success btn-sm">
+                        Post <span class="badge bg-danger">4</span>
+                      </button>
+                    </div>
+                    <div class="col-2">
+                      
+                    </div>
+                    <div class="col-1">
+                      <button type="button" class="btn btn-outline-success disabled btn-sm">
+                        View <span class="badge bg-danger">4</span>
+                      </button>
+                    </div>
+                  </div>
+              </li>
+            
+            
+          
           <hr>
         </ul>
       </div>

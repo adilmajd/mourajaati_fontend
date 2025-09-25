@@ -6,6 +6,7 @@
             <div class="row">
               <div class="col-3"><button class="btn btn-outline-info btn-sm" (click)="modifier_nom(cours.cours_titre,cours.cours_id)">Modifier le Nom</button></div>
               <div class="col-3"><button class="btn btn-outline-danger btn-sm" (click)="supprimerCours(cours)">Supprimer</button></div>
+              <div class="col-3"><button class="btn btn-outline-warning btn-sm" (click)="ecrire_modifer_Cours(cours)">Ecrire ou modifier</button></div>
             </div>
             <label>Niveau:</label>
             <select [(ngModel)]="cours.niveau.niveau_id" (change)="onChange(cours)">
@@ -121,6 +122,78 @@
 
 
           <button class="btn btn-outline-dark btn-sm mt-1" (click)="Ajouter_cours_back(input_ajouter_nom)">Ajouter</button> <span class="text-danger m-1">{{message}}</span>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- The Modal -->
+<div class="modal" id="insert_cours">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Cours - -</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="mb-2">
+          <!-- Boutons BBCode -->
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[b]', '[/b]')"><i class="bi bi-type-bold"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[i]', '[/i]')"><i class="bi bi-type-italic"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[u]', '[/u]')"><i class="bi bi-type-underline"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[s]', '[/s]')"><i class="bi bi-type-strikethrough"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[code]', '[/code]')"><i class="bi bi-code"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[left]', '[/left]')"><i class="bi bi-text-left"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[center]', '[/center]')"><i class="bi bi-text-center"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[right]', '[/right]')"><i class="bi bi-text-right"></i></button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[math]', '[/math]')">Math</button>
+          <button class="btn btn-sm btn-outline-dark me-1" (click)="wrapSelection('[table]\n[tr]\n[td]', '[/td]\n[/tr]\n[/table]')">Table</button>
+          <button class="btn btn-sm btn-outline-dark me-1"(click)="wrapSelection('[img]', '[/img]')"><i class="bi bi-image"></i></button>
+          
+
+
+          <div class="d-inline-flex flex-wrap ms-3 ">
+            <label class="me-1">Texte</label>
+            <input type="color" class="btn btn-sm" (change)="applyColor($event)">
+          </div>
+        
+          
+          
+          <div class="d-inline-flex flex-wrap ms-3">
+            <label class="me-1">Fond</label>
+            <input type="color" class="btn btn-sm" (change)="applyBgColor($event)">
+          </div>
+
+          <div class="d-inline-flex flex-wrap ms-3">
+            <select (change)="applySize($event)" class="form-select">
+              <option value="">--Taille--</option>
+              <option *ngFor="let s of fontSizes" [value]="s">{{s}} px</option>
+            </select>
+          </div>
+
+          
+        </div>
+        <div class="row">
+        <textarea [(ngModel)]="input_contenu_cours" class="form-control mb-3" (input)="onInputChange()" #textareaEl>
+                  {{input_contenu_cours}}
+        </textarea>
+
+        </div>
+        <div #preview id="preview" class="border p-2 rounded"></div>
+        <button class="btn btn-outline-dark btn-sm mt-1" (click)="updateContenu()">Ecrire le cours</button> <span class="text-danger m-1">{{message}}</span>
       </div>
 
       <!-- Modal footer -->

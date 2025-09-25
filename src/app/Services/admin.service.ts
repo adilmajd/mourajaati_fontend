@@ -221,6 +221,15 @@ export class AdminService {
   addCours(cours: {cours_titre: string, niveau_id: number, type_cours_id: number,user_public_id:string}): Observable<any> {
     return this.http.post(`${this.baseUrl}cours/cour/`, cours);
   }
+
+  get_cours_contenu(cours_id:number){
+    return this.http.get<any>(`${this.baseUrl}cours/cours_contenu/${cours_id}`)
+  }
+
+  updateCoursContenu(user_public_id:any,cours_id: number, contenu: string): Observable<any> {
+    const body = { cours_id, contenu };
+    return this.http.put(`${this.baseUrl}cours/update-contenu/${user_public_id}`, body);
+  }
   
 }
 
